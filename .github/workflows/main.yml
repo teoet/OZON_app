@@ -24,4 +24,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: myscript.exe
-        path: dist/myscript.exe
+        path: .
