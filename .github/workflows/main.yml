@@ -1,6 +1,7 @@
 name: Build Windows Exe
 
-on: push
+on:
+  push
 
 jobs:
   build:
@@ -11,14 +12,16 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.9'
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16.x'
     - name: Install dependencies
       run: pip install pyinstaller
     - name: Build exe
       run: pyinstaller --name myapp --onefile --windowed --hidden-import=openpyxl --hidden-import=requests --hidden-import=docx --hidden-import=configparser --hidden-import=PyQt5 --hidden-import=PyQt5.QtWidgets --hidden-import=PyQt5.QtCore --hidden-import=PyQt5.QtGui gui.py program_opt.py
-
-
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         name: myscript.exe
-        path: .
+        path: dist/myscript.exe
