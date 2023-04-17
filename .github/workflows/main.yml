@@ -14,7 +14,9 @@ jobs:
     - name: Install dependencies
       run: pip install pyinstaller
     - name: Build exe
-      run: pyinstaller --onefile gui.py
+      run: pyinstaller --name myapp --onefile --windowed --hidden-import=openpyxl --hidden-import=requests --hidden-import=docx --hidden-import=configparser --hidden-import=PyQt5 --hidden-import=PyQt5.QtWidgets --hidden-import=PyQt5.QtCore --hidden-import=PyQt5.QtGui gui.py program_opt.py
+
+
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
